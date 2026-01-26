@@ -31,18 +31,18 @@ export default function GalleryModal({
   return (
     <div className="h-full overflow-y-auto overscroll-contain">
       {/* HEADER */}
-      <header className="px-10 py-8 border-b border-gray-100">
-        <h2 className="text-[10px] uppercase tracking-[0.6em] text-gray-400 mb-4">
+      <header className="px-4 sm:px-6 md:px-10 py-6 sm:py-8 border-b border-gray-100">
+        <h2 className="text-[9px] sm:text-[10px] uppercase tracking-[0.4em] sm:tracking-[0.6em] text-gray-400 mb-3 sm:mb-4 font-bold">
           {data.title}
         </h2>
-        <p className="text-sm text-gray-700 max-w-xl leading-relaxed">
+        <p className="text-xs sm:text-sm text-gray-700 max-w-xl leading-relaxed">
           {data.description}
         </p>
       </header>
 
       {/* GALERIA */}
-      <section className="p-10">
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      <section className="p-4 sm:p-6 md:p-10">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 sm:gap-3 md:gap-4">
           {data.images.map((src, index) => (
             <motion.div
               key={index}
@@ -53,7 +53,7 @@ export default function GalleryModal({
                 duration: 0.35,
                 ease: "easeOut",
               }}
-              className="overflow-hidden bg-gray-100"
+              className="overflow-hidden bg-gray-100 rounded-lg"
             >
               <img
                 src={src}

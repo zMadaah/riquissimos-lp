@@ -11,11 +11,25 @@ export default function RolexInspiredSite() {
 
   const [activeSection, setActiveSection] = useState<1 | 2 | 3 | 4>(1);
   const [isAnyModalOpen, setIsAnyModalOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"],
   });
+
+  /* ===============================
+      DETECTAR MOBILE
+  ================================ */
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   /* ===============================
       CONTROLE DE SEÇÕES
@@ -115,9 +129,9 @@ export default function RolexInspiredSite() {
             style={{ y: section3Y }}
             className="absolute inset-0 z-30 flex items-center justify-center bg-black"
           >
-            <div className="w-full h-full max-w-[1200px] max-h-[70vh] px-10 flex flex-col items-center justify-center">
+            <div className="w-full h-full max-w-[1200px] max-h-[70vh] px-4 sm:px-6 md:px-10 flex flex-col items-center justify-center">
              
-              <div className="relative w-full h-full overflow-hidden bg-zinc-900 shadow-2xl">
+              <div className="relative w-full h-full overflow-hidden bg-zinc-900 shadow-2xl rounded-lg sm:rounded-xl">
                 <video
                   autoPlay
                   muted
@@ -145,7 +159,7 @@ export default function RolexInspiredSite() {
 
             {/* Conteúdo Central: Imagem ao invés de texto */}
             <motion.div
-              className="relative z-50 flex flex-col items-center px-4"
+              className="relative z-50 flex flex-col items-center px-4 sm:px-6 md:px-8"
               initial={{ scale: 0.9, opacity: 0 }}
               whileInView={{ scale: 1, opacity: 1 }}
               transition={{ duration: 1.5, ease: "easeOut" }}
@@ -153,9 +167,7 @@ export default function RolexInspiredSite() {
               <img
                 src="/assets/image/logo_footer.png"
                 alt="Riquíssimos Logo"
-                className="w-full max-w-[400px] md:max-w-[600px] h-auto object-contain brightness-0 invert"
-              // Usei brightness-0 para a logo ficar preta sobre o fundo Silk, 
-              // mas você pode remover ou trocar por "brightness-0 invert" para branco.
+                className="w-full max-w-[280px] sm:max-w-[400px] md:max-w-[600px] h-auto object-contain brightness-0 invert"
               />
             </motion.div>
           </motion.section>
