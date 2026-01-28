@@ -18,38 +18,45 @@ export default function Navbar() {
      OBSERVER DE SEÇÕES (GLOBAL)
   ================================= */
   useEffect(() => {
-  const scrollContainer = document.querySelector("main");
-  if (!scrollContainer) return;
+    const sections = document.querySelectorAll<HTMLElement>(
+      "section[data-theme]"
+    );
 
-  const sections = document.querySelectorAll("section[data-theme]");
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
 
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const sectionTheme = entry.target.getAttribute("data-theme");
+          const target = entry.target as HTMLElement;
+          const sectionTheme = target.dataset.theme;
+
           if (sectionTheme === "light" || sectionTheme === "dark") {
             setTheme(sectionTheme);
           }
-        }
-      });
-    },
-    {
-      root: scrollContainer,          // 🔥 ESSENCIAL
-      rootMargin: "-25% 0px -50% 0px", // 🔥 MOBILE FRIENDLY
-      threshold: 0.1,
-    }
-  );
+        });
+      },
+      {
+        root: null,
+        threshold: 0.1,
+        rootMargin: "-80px 0px -60% 0px",
+      }
+    );
 
-  sections.forEach((section) => observer.observe(section));
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
+  }, []);
 
-  return () => observer.disconnect();
-}, []);
+  /* ================================
+     PADRÕES VISUAIS
+  ================================= */
+  const textColor = "text-white";
+  const logoFilter = "brightness-0 invert";
 
+  const desktopLink =
+    "uppercase text-[10px] tracking-[0.4em] font-bold transition-colors duration-300 text-white";
 
-  const textColor = theme === "light" ? "text-white" : "text-white";
-  const logoFilter = theme === "light"  ? "brightness-0 invert"
-    : "brightness-0 invert";
+  const mobileLink =
+    "uppercase text-[12px] tracking-[0.45em] font-bold text-black transition-colors duration-300";
 
   /* ================================
      NAVBAR
@@ -61,8 +68,8 @@ export default function Navbar() {
     flex items-center justify-between
     px-4 sm:px-6 md:px-10
     h-20 sm:h-24 md:h-28
-    transition-colors duration-500
     font-sans antialiased
+    transition-all duration-500 ease-in-out
     ${
       theme === "light"
         ? "bg-black shadow-md"
@@ -76,7 +83,7 @@ export default function Navbar() {
         <div className="relative flex items-center h-full">
           <button
             onClick={() => setIsModalOpen(!isModalOpen)}
-            className={`uppercase text-[10px] tracking-[0.4em] font-bold transition-colors duration-300 ${textColor}`}
+            className={desktopLink}
           >
             Localização
           </button>
@@ -117,10 +124,7 @@ export default function Navbar() {
           </AnimatePresence>
         </div>
 
-        <Link
-          href="/service"
-          className={`uppercase text-[10px] tracking-[0.4em] font-bold transition-colors duration-300 ${textColor}`}
-        >
+        <Link href="/service" className={desktopLink}>
           Serviços
         </Link>
       </div>
@@ -138,16 +142,10 @@ export default function Navbar() {
 
       {/* ================= RIGHT (DESKTOP) ================= */}
       <div className="hidden md:flex items-center justify-end gap-8 lg:gap-12 flex-1 h-full">
-        <Link
-          href="/contato"
-          className={`uppercase text-[10px] tracking-[0.4em] font-bold transition-colors duration-300 ${textColor}`}
-        >
+        <Link href="/contato" className={desktopLink}>
           Fale Conosco
         </Link>
-        <Link
-          href="/faq"
-          className={`uppercase text-[10px] tracking-[0.4em] font-bold transition-colors duration-300 ${textColor}`}
-        >
+        <Link href="/faq" className={desktopLink}>
           FAQ
         </Link>
       </div>
@@ -184,12 +182,20 @@ export default function Navbar() {
             transition={{ duration: 0.4 }}
             className="fixed inset-0 bg-white z-[550] flex items-center justify-center px-10"
           >
-            <div className="flex flex-col items-center gap-6">
-              <Link href="/" onClick={() => setIsMobileMenuOpen(false)} className="mobile-link">
+            <div className="flex flex-col items-center gap-8">
+              <Link
+                href="/"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className={mobileLink}
+              >
                 Início
               </Link>
 
-              <Link href="#service" onClick={() => setIsMobileMenuOpen(false)} className="mobile-link">
+              <Link
+                href="/service"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className={mobileLink}
+              >
                 Serviços
               </Link>
 
@@ -199,9 +205,15 @@ export default function Navbar() {
                   onClick={() =>
                     setMobileLocalizacaoOpen(!mobileLocalizacaoOpen)
                   }
-                  className="text-black text-[12px] uppercase tracking-[0.5em] font-bold"
+                  className={`${mobileLink} flex items-center gap-2`}
                 >
                   Localização
+                  <span
+                    className={`transition-transform duration-300 ${
+                      mobileLocalizacaoOpen ? "rotate-180" : ""
+                    }`}
+                  >
+                  </span>
                 </button>
 
                 <AnimatePresence>
@@ -210,12 +222,13 @@ export default function Navbar() {
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: "auto", opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3 }}
                       className="mt-4 flex flex-col gap-3"
                     >
                       {cidades.map((c) => (
                         <li
                           key={c}
-                          className="text-[10px] uppercase tracking-[0.3em] text-zinc-500 font-bold"
+                          className="text-[10px] uppercase tracking-[0.35em] font-bold text-zinc-500"
                         >
                           {c}
                         </li>
@@ -225,11 +238,19 @@ export default function Navbar() {
                 </AnimatePresence>
               </div>
 
-              <Link href="/faq" onClick={() => setIsMobileMenuOpen(false)} className="mobile-link">
+              <Link
+                href="/faq"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className={mobileLink}
+              >
                 FAQ
               </Link>
 
-              <Link href="/contato" onClick={() => setIsMobileMenuOpen(false)} className="mobile-link">
+              <Link
+                href="/contato"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className={mobileLink}
+              >
                 Fale Conosco
               </Link>
             </div>

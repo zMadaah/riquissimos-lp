@@ -25,7 +25,7 @@ export default function FAQ() {
       answer: "Sim, todos os nossos projetos de cenografia e decoração incluem o desenvolvimento de projetos 3D para que possa visualizar cada detalhe antes da execução final."
     }
   ];
-  const whatsappNumber = "5561991209112"; 
+  const whatsappNumber = "11993115436"; 
   const message = encodeURIComponent("Olá! Gostaria de falar com a equipe.");
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${message}`;
 

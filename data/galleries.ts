@@ -29,6 +29,10 @@ export const GALLERIES: Record<GalleryItemKey, GalleryData> = {
       "/assets/image/decoracao_2.jpg",
       "/assets/image/decoracao_3.jpg",
       "/assets/image/decoracao_4.jpg",
+      "/assets/image/decoracao_5.jpg",
+      "/assets/image/decoracao_6.jpg",
+      "/assets/image/decoracao_7.jpg",
+      "/assets/image/decoracao_8.jpg",
     ],
   },
 

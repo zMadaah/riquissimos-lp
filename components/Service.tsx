@@ -6,7 +6,7 @@ export default function Service() {
   const serviceCategories = [
     {
       title: "Cenografia",
-      items: ["Cenografia completa", "Construção de cenários personalizados", "Cenografia de balões", "Ambientação temática", "Personagens cenográficos"]
+      items: ["Cenografia completa", "Construção de cenários personalizados", "Cenografia de balões", ]
     },
     {
       title: "Decoração",
@@ -14,15 +14,15 @@ export default function Service() {
     },
     {
       title: "Gastronomia",
-      items: ["Buffet completo", "Buffet personalizado", "Bolos artísticos", "Doces finos", "Doces personalizados"]
+      items: ["Buffet completo", , "Bolos artísticos", "Doces finos"]
     },
     {
       title: "Mobiliário e Estrutura",
-      items: ["Mobiliário próprio", "Mobiliário decorativo", "Estrutura completa", "Logística de montagem"]
+      items: [ "Mobiliário decorativo", "Estrutura completa", "Logística de montagem"]
     },
     {
       title: "Criação e Projeto",
-      items: ["Criação de conceito", "Projeto criativo", "Projeto 3D cenográfico", "Curadoria estética"]
+      items: ["Criação de conceito", "Projeto criativo", "Projeto 3D cenográfico"]
     },
     {
       title: "Audiovisual",
@@ -34,7 +34,7 @@ export default function Service() {
     },
     {
       title: "Formatos Atendidos",
-      items: ["Festas Infantis e 15 anos", "Casamentos e Bodas", "Eventos Corporativos", "Lançamentos e Shows"]
+      items: ["Festas Infantis e 15 anos", "Casamentos", "Eventos Corporativos", "Lançamentos"]
     }
   ];
 
@@ -76,13 +76,15 @@ export default function Service() {
         <div className="grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-4 gap-x-8 lg:gap-x-12 gap-y-10 sm:gap-y-16">
           {serviceCategories.map((category, index) => (
             <div key={index} className="flex flex-col border-t border-zinc-900 pt-8 group">
-              <h3 className="text-[10px] sm:text-[11px] tracking-[0.3em] uppercase font-black mb-6 text-zinc-100 group-hover:text-white transition-colors">
+              <h3 className="text-[12px] sm:text-[12px] tracking-[0.3em] uppercase font-black mb-6 text-zinc-100 font-extrabold group-hover:text-white transition-colors">
                 {category.title}
               </h3>
               
+              <div className="py-5 border-t border-zinc-100 text-center px-6"></div>
+
               <ul className="space-y-4">
                 {category.items.map((item, idx) => (
-                  <li key={idx} className="text-[10px] sm:text-[11px] tracking-[0.15em] text-zinc-500 uppercase leading-relaxed font-bold hover:text-white transition-colors cursor-default">
+                  <li key={idx} className="text-[10px] sm:text-[11px] tracking-[0.15em] text-zinc-300 uppercase leading-relaxed font-bold hover:text-white transition-colors cursor-default">
                     {item}
                   </li>
                 ))}
@@ -93,11 +95,11 @@ export default function Service() {
       </section>
 
       {/* RODAPÉ: Respiro final */}
-      <footer className="py-16 border-t border-zinc-900 text-center px-6">
+      {/* <footer className="py-16 border-t border-zinc-100 text-center px-6">
         <p className="text-[8px] sm:text-[9px] tracking-[0.4em] uppercase text-zinc-700 font-bold">
           Transformando visões em realidade memorável.
         </p>
-      </footer>
+      </footer> */}
     </main>
   );
 }
