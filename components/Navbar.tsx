@@ -47,25 +47,29 @@ export default function Navbar() {
 }, []);
 
 
-  const textColor = theme === "light" ? "text-black" : "text-white";
-  const logoFilter =
-    theme === "light" ? "brightness-0" : "brightness-0 invert";
+  const textColor = theme === "light" ? "text-white" : "text-white";
+  const logoFilter = theme === "light"  ? "brightness-0 invert"
+    : "brightness-0 invert";
 
   /* ================================
      NAVBAR
   ================================= */
   return (
     <nav
-      className={`
-        fixed top-0 w-full z-[500]
-        flex items-center justify-between
-        px-4 sm:px-6 md:px-10
-        h-20 sm:h-24 md:h-28
-        transition-colors duration-500
-        font-sans antialiased
-        ${theme === "light" ? "bg-white shadow-sm" : "bg-transparent"}
-      `}
-    >
+  className={`
+    fixed top-0 w-full z-[500]
+    flex items-center justify-between
+    px-4 sm:px-6 md:px-10
+    h-20 sm:h-24 md:h-28
+    transition-colors duration-500
+    font-sans antialiased
+    ${
+      theme === "light"
+        ? "bg-black shadow-md"
+        : "bg-transparent"
+    }
+  `}
+>
       {/* ================= LEFT (DESKTOP) ================= */}
       <div className="hidden md:flex items-center gap-8 lg:gap-12 flex-1 h-full">
         {/* LOCALIZAÇÃO */}
