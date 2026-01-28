@@ -39,53 +39,50 @@ export default function Service() {
   ];
 
   return (
-    /* Fundo preto e texto branco com fonte Roboto */
-    <main className="min-h-screen bg-black text-white font-sans antialiased">
+    <main className="min-h-screen bg-black text-white font-sans antialiased overflow-x-hidden">
 
-      {/* BOTÃO VOLTAR (Branco sobre Preto) */}
-      <div className="fixed top-6 left-4 sm:left-6 md:left-10 z-[100]">
+      {/* BOTÃO VOLTAR: Melhorado para toque no mobile */}
+      <div className="fixed top-4 sm:top-6 left-4 sm:left-6 md:left-10 z-[100]">
         <Link 
           href="/" 
-          className="group flex items-center gap-2 text-[9px] uppercase tracking-[0.3em] font-medium hover:text-zinc-400 transition-colors duration-300"
+          className="group flex items-center gap-2 text-[8px] sm:text-[9px] uppercase tracking-[0.3em] font-bold hover:text-zinc-400 transition-colors duration-300"
         >
-          <div className="p-2 rounded-full border border-zinc-800 group-hover:border-white transition-colors duration-300">
+          <div className="p-1.5 sm:p-2 rounded-full border border-zinc-800 bg-black/50 backdrop-blur-sm group-hover:border-white transition-colors duration-300">
             <svg 
-              className="w-4 h-4 transition-transform duration-300 group-hover:-translate-x-1" 
+              className="w-3.5 h-3.5 sm:w-4 h-4 transition-transform duration-300 group-hover:-translate-x-1" 
               fill="none" 
               stroke="currentColor" 
               viewBox="0 0 24 24"
             >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.2} d="M15 19l-7-7 7-7" />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 19l-7-7 7-7" />
             </svg>
           </div>
-          <span className="hidden sm:inline">Voltar</span>
+          <span className="hidden xs:inline">Voltar</span>
         </Link>
       </div>
 
-      {/* HEADER DA PÁGINA */}
-      <section className="pt-32 sm:pt-40 md:pt-48 pb-12 sm:pb-16 md:pb-20 px-4 sm:px-6 md:px-10 text-center">
-        <h1 className="text-[10px] sm:text-[11px] md:text-[13px] tracking-[0.5em] uppercase font-sans mb-3 sm:mb-4 text-zinc-500">
+      {/* HEADER DA PÁGINA: Padding adaptável */}
+      <header className="pt-24 sm:pt-32 md:pt-44 pb-12 sm:pb-20 px-6 text-center">
+        <h1 className="text-[9px] sm:text-[11px] tracking-[0.4em] uppercase font-bold mb-3 text-zinc-500">
           Portfolio de Experiências
         </h1>
-        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-sans tracking-tight leading-tight">
+        <h2 className="text-xl sm:text-3xl md:text-4xl lg:text-5xl tracking-tight leading-tight font-black">
           Serviços & Excelência
         </h2>
-      </section>
+      </header>
 
-      {/* GRADE DE SERVIÇOS */}
-      <section className="px-4 sm:px-6 md:px-10 pb-16 sm:pb-24 md:pb-32 max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-8 lg:gap-x-12 gap-y-12 sm:gap-y-16">
+      {/* GRADE DE SERVIÇOS: Grid progressivo */}
+      <section className="px-6 sm:px-10 pb-20 sm:pb-32 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-4 gap-x-8 lg:gap-x-12 gap-y-10 sm:gap-y-16">
           {serviceCategories.map((category, index) => (
-            <div key={index} className="flex flex-col border-t border-zinc-800 pt-6 group">
-              {/* Título da Categoria com Roboto Bold */}
-              <h3 className="text-[10px] sm:text-[11px] tracking-[0.3em] uppercase font-bold mb-6 text-white group-hover:text-zinc-400 transition-colors">
+            <div key={index} className="flex flex-col border-t border-zinc-900 pt-8 group">
+              <h3 className="text-[10px] sm:text-[11px] tracking-[0.3em] uppercase font-black mb-6 text-zinc-100 group-hover:text-white transition-colors">
                 {category.title}
               </h3>
               
-              {/* Lista de Itens com Roboto Light */}
-              <ul className="space-y-3">
+              <ul className="space-y-4">
                 {category.items.map((item, idx) => (
-                  <li key={idx} className="text-[10px] sm:text-[11px] tracking-[0.2em] text-white uppercase leading-relaxed font-bold hover:text-zinc-300 transition-colors">
+                  <li key={idx} className="text-[10px] sm:text-[11px] tracking-[0.15em] text-zinc-500 uppercase leading-relaxed font-bold hover:text-white transition-colors cursor-default">
                     {item}
                   </li>
                 ))}
@@ -95,9 +92,9 @@ export default function Service() {
         </div>
       </section>
 
-      {/* RODAPÉ */}
-      <footer className="py-20 border-t border-zinc-900 text-center px-4">
-        <p className="text-[9px] sm:text-[10px] tracking-[0.5em] uppercase text-zinc-600 font-light">
+      {/* RODAPÉ: Respiro final */}
+      <footer className="py-16 border-t border-zinc-900 text-center px-6">
+        <p className="text-[8px] sm:text-[9px] tracking-[0.4em] uppercase text-zinc-700 font-bold">
           Transformando visões em realidade memorável.
         </p>
       </footer>

@@ -29,36 +29,37 @@ export default function GalleryModal({
   }, [onClose]);
 
   return (
-    <div className="h-full overflow-y-auto overscroll-contain">
-      {/* HEADER */}
-      <header className="px-4 sm:px-6 md:px-10 py-6 sm:py-8 border-b border-gray-100">
-        <h2 className="text-[9px] sm:text-[10px] uppercase tracking-[0.4em] sm:tracking-[0.6em] text-gray-400 mb-3 sm:mb-4 font-bold">
+    <div className="h-full overflow-y-auto overscroll-contain bg-white scrollbar-hide">
+      {/* HEADER: Ajustado para melhor leitura no mobile */}
+      <header className="px-5 sm:px-8 md:px-12 py-8 sm:py-10 border-b border-gray-50">
+        <h2 className="text-[10px] sm:text-[11px] uppercase tracking-[0.5em] text-zinc-400 mb-4 font-black">
           {data.title}
         </h2>
-        <p className="text-xs sm:text-sm text-gray-700 max-w-xl leading-relaxed">
+        <p className="text-sm sm:text-base text-zinc-600 max-w-2xl leading-relaxed font-medium">
           {data.description}
         </p>
       </header>
 
-      {/* GALERIA */}
-      <section className="p-4 sm:p-6 md:p-10">
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 sm:gap-3 md:gap-4">
+      {/* GALERIA: Grid inteligente (1 coluna mobile pequeno, 2 mobile médio, 3+ desktop) */}
+      <section className="p-5 sm:p-8 md:p-12 pb-20">
+        <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 sm:gap-4 md:gap-5">
           {data.images.map((src, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 12 }}
+              initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{
-                delay: index * 0.04,
-                duration: 0.35,
+                delay: index * 0.05,
+                duration: 0.4,
                 ease: "easeOut",
               }}
-              className="overflow-hidden bg-gray-100 rounded-lg"
+              className="group overflow-hidden bg-zinc-50 rounded-xl sm:rounded-2xl"
             >
               <img
                 src={src}
-                alt=""
-                className="w-full aspect-[3/4] object-cover transition-transform duration-500 hover:scale-105"
+                alt={`${data.title} - imagem ${index + 1}`}
+                loading="lazy"
+                className="w-full aspect-[3/4] object-cover transition-transform duration-700 group-hover:scale-110"
               />
             </motion.div>
           ))}

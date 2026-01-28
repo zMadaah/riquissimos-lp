@@ -30,51 +30,51 @@ export default function FAQ() {
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${message}`;
 
   return (
-    <main className="min-h-screen bg-white text-black font-sans antialiased">
+    <main className="min-h-screen bg-white text-black font-sans antialiased overflow-x-hidden">
 
-      {/* BOTÃO VOLTAR */}
-      <div className="fixed top-6 left-4 sm:left-6 md:left-10 z-[100]">
+      {/* BOTÃO VOLTAR: Posicionamento corrigido para mobile */}
+      <div className="fixed top-4 sm:top-6 left-4 sm:left-6 md:left-10 z-[100]">
         <Link 
           href="/" 
-          className="group flex items-center gap-2 text-[9px] uppercase tracking-[0.3em] font-medium hover:text-gray-500 transition-colors duration-300"
+          className="group flex items-center gap-2 text-[8px] sm:text-[9px] uppercase tracking-[0.3em] font-bold hover:text-gray-500 transition-colors duration-300"
         >
-          <div className="p-2 rounded-full border border-gray-100 group-hover:border-black transition-colors duration-300">
+          <div className="p-1.5 sm:p-2 rounded-full border border-gray-100 bg-white/80 backdrop-blur-sm group-hover:border-black transition-colors duration-300 shadow-sm">
             <svg 
-              className="w-4 h-4 transition-transform duration-300 group-hover:-translate-x-1" 
+              className="w-3.5 h-3.5 sm:w-4 h-4 transition-transform duration-300 group-hover:-translate-x-1" 
               fill="none" 
               stroke="currentColor" 
               viewBox="0 0 24 24"
             >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.2} d="M15 19l-7-7 7-7" />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 19l-7-7 7-7" />
             </svg>
           </div>
-          <span className="hidden sm:inline">Voltar</span>
+          <span className="hidden xs:inline">Voltar</span>
         </Link>
       </div>
 
-      {/* HEADER */}
-      <section className="pt-32 sm:pt-40 md:pt-48 pb-12 sm:pb-16 md:pb-20 px-4 sm:px-6 md:px-10 text-center">
-        <h1 className="text-[10px] sm:text-[11px] md:text-[13px] tracking-[0.5em] uppercase font-sans mb-3 sm:mb-4 text-gray-500">
+      {/* HEADER: Ajuste de escala responsiva */}
+      <header className="pt-24 sm:pt-32 md:pt-40 pb-10 sm:pb-16 px-6 text-center">
+        <h1 className="text-[9px] sm:text-[11px] tracking-[0.4em] uppercase font-bold mb-3 text-zinc-400">
           Suporte
         </h1>
-        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-sans tracking-tight font-extrabold">
+        <h2 className="text-xl sm:text-3xl md:text-4xl lg:text-5xl tracking-tight font-black max-w-3xl mx-auto leading-tight">
           Perguntas Frequentes
         </h2>
-      </section>
+      </header>
 
-      {/* LISTA DE FAQ COM BORDER RADIUS, BORDA PRETA E TEXTO PRETO */}
-      <section className="px-4 sm:px-6 md:px-10 pb-16 sm:pb-24 md:pb-32 max-w-4xl mx-auto">
-        <div className="flex flex-col gap-4 sm:gap-6">
+      {/* LISTA DE FAQ: Cards adaptáveis */}
+      <section className="px-5 sm:px-8 md:px-10 pb-20 sm:pb-32 max-w-3xl mx-auto">
+        <div className="flex flex-col gap-5 sm:gap-6">
           {faqs.map((faq, index) => (
             <div
               key={index}
-              className="group p-6 sm:p-8 md:p-10 rounded-[20px] sm:rounded-[30px] border border-black bg-white hover:bg-zinc-50 transition-all duration-500"
+              className="group p-6 sm:p-8 md:p-10 rounded-[24px] sm:rounded-[32px] border border-black/10 bg-white hover:border-black transition-all duration-500 shadow-sm hover:shadow-md"
             >
-              <h3 className="text-[11px] sm:text-[11.5px] md:text-[12px] tracking-[0.25em] uppercase font-extrabold mb-4 sm:mb-5 md:mb-6 leading-tight transition-colors font-sans text-black">
+              <h3 className="text-[10px] sm:text-[11px] md:text-[12px] tracking-[0.2em] uppercase font-black mb-4 leading-snug text-black">
                 {faq.question}
               </h3>
 
-              <p className="text-[12px] sm:text-[13px] md:text-[14px] tracking-[0.05em] text-black leading-relaxed font-light max-w-2xl font-sans">
+              <p className="text-[13px] sm:text-[14px] md:text-[15px] text-zinc-600 leading-relaxed font-medium">
                 {faq.answer}
               </p>
             </div>
@@ -82,20 +82,20 @@ export default function FAQ() {
         </div>
       </section>
 
-      {/* CALL TO ACTION FINAL */}
-      <section className="py-20 bg-[#f5f3ef] text-center px-4 sm:px-6 md:px-10">
-        <p className="text-[9px] sm:text-[10px] md:text-[11px] tracking-[0.4em] uppercase mb-8 font-bold text-zinc-500">
-          Ainda tem dúvidas?
+      {/* CALL TO ACTION: Background luxuoso */}
+      <section className="py-16 sm:py-24 bg-zinc-50 border-t border-zinc-100 text-center px-6">
+        <p className="text-[9px] sm:text-[10px] tracking-[0.3em] uppercase mb-8 font-bold text-zinc-700">
+          Ainda possui dúvidas específicas?
         </p>
 
         <a 
-            href={whatsappUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-           className="inline-block bg-black text-white px-10 py-5 rounded-full text-[9px] sm:text-[10px] uppercase tracking-[0.3em] hover:bg-zinc-800 transition-all duration-500 font-bold"
-          >
-            Fale com a nossa equipe
-          </a>
+          href={whatsappUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-block bg-black text-white px-8 sm:px-12 py-4 sm:py-5 rounded-full text-[9px] sm:text-[10px] uppercase tracking-[0.3em] hover:bg-zinc-800 active:scale-95 transition-all duration-500 font-bold shadow-lg"
+        >
+          Falar com curadoria
+        </a>
       </section>
     </main>
   );
