@@ -94,7 +94,7 @@ export default function FAQ() {
           rel="noopener noreferrer"
           className="inline-block bg-black text-white px-8 sm:px-12 py-4 sm:py-5 rounded-full text-[9px] sm:text-[10px] uppercase tracking-[0.3em] hover:bg-zinc-800 active:scale-95 transition-all duration-500 font-bold shadow-lg"
         >
-          Falar com curadoria
+          Falar com a nossa equipe
         </a>
       </section>
     </main>

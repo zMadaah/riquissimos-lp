@@ -48,12 +48,12 @@ export default function FaleConosco() {
           <div>
             <h3 className="text-[10px] sm:text-[10.5px] md:text-[11px] tracking-[0.2em] sm:tracking-[0.25em] md:tracking-[0.3em] uppercase font-bold mb-4 sm:mb-5 md:mb-6">Modelo de Atendimento</h3>
             <p className="text-[11px] sm:text-[11.5px] md:text-[12px] tracking-widest text-black-400 font-sans uppercase leading-relaxed sm:leading-loose">
-              Atendimento 100% Online<br className="hidden sm:block" /> 
-              Disponibilidade Nacional & Internacional
+              - Atendimento 100% Online<br className="hidden sm:block" /> 
+              - Disponibilidade Nacional 
             </p>
           </div>
           <div>
-            <h3 className="text-[10px] sm:text-[10.5px] md:text-[11px] tracking-[0.2em] sm:tracking-[0.25em] md:tracking-[0.3em] uppercase font-bold mb-4 sm:mb-5 md:mb-6">Canais Diretos</h3>
+            <h3 className="text-[10px] sm:text-[10.5px] md:text-[11px] tracking-[0.2em] sm:tracking-[0.25em] md:tracking-[0.3em] uppercase font-bold mb-4 sm:mb-5 md:mb-6"> - Canais Diretos</h3>
             <p className="text-[11px] sm:text-[11.5px] md:text-[12px] tracking-widest font-sans text-black-500 uppercase leading-relaxed sm:leading-loose">
               Segunda a Sexta — 09h às 18h
             </p>

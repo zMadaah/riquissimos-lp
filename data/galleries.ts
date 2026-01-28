@@ -37,8 +37,8 @@ export const GALLERIES: Record<GalleryItemKey, GalleryData> = {
     description:
       "Novas narrativas visuais, projetos especiais e experiências inéditas.",
     images: [
-      "/assets/image/imersao_1.png",
       "/assets/image/imersao_2.png",
+      "/assets/image/imersao_1.png",
       "/assets/image/imersao_3.png",
       "/assets/image/imersao_4.png",
     ],

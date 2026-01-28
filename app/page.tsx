@@ -1,90 +1,98 @@
 "use client";
 
-import React, { useRef, useState, useEffect } from "react";
-import { motion, useScroll, AnimatePresence } from "framer-motion";
+import React, { useRef, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Silk from "@/components/Silk";
 import ImageGallery from "@/components/ImageGallery";
 
 export default function RolexInspiredSite() {
   const containerRef = useRef<HTMLDivElement | null>(null);
-  const [activeSection, setActiveSection] = useState(1);
   const [isAnyModalOpen, setIsAnyModalOpen] = useState(false);
-
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"],
-  });
-
-  useEffect(() => {
-    const unsub = scrollYProgress.on("change", (v) => {
-      if (v < 0.25) setActiveSection(1);
-      else if (v < 0.50) setActiveSection(2);
-      else if (v < 0.75) setActiveSection(3);
-      else setActiveSection(4);
-    });
-    return () => unsub();
-  }, [scrollYProgress]);
 
   return (
     <main
       ref={containerRef}
-      className="h-[100dvh] w-full overflow-y-scroll snap-y snap-mandatory scroll-smooth bg-black font-sans antialiased overflow-x-hidden"
+      className="
+        h-[100dvh] w-full overflow-y-scroll overflow-x-hidden
+        snap-y snap-mandatory scroll-smooth
+        bg-black font-sans antialiased
+      "
     >
+      {/* ================= NAVBAR ================= */}
       <AnimatePresence>
         {!isAnyModalOpen && (
           <header className="fixed top-0 w-full z-[200] pointer-events-none">
             <div className="pointer-events-auto">
-              <Navbar isDarkBg={activeSection !== 2} forceVisible={activeSection === 2} />
+              <Navbar />
             </div>
           </header>
         )}
       </AnimatePresence>
 
-      {/* SEÇÃO 1: HERO */}
-      <section className="relative h-screen w-full snap-start z-10 overflow-hidden bg-black">
-        <video autoPlay muted loop playsInline className="h-full w-full object-cover opacity-70">
+      {/* ================= SEÇÃO 1 — HERO (DARK) ================= */}
+      <section
+        data-theme="dark"
+        className="relative h-screen w-full snap-start z-10 overflow-hidden bg-black"
+      >
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="h-full w-full object-cover opacity-70"
+        >
           <source src="/assets/video/Khadija.mp4" type="video/mp4" />
         </video>
       </section>
 
-      {/* SEÇÃO 2: GALERIA - Z-INDEX ALTO E BG SÓLIDO */}
+      {/* ================= SEÇÃO 2 — GALERIA (LIGHT) ================= */}
       <section
         id="galeria"
-        className="relative min-h-[100dvh] w-full snap-start z-[50] bg-white flex flex-col items-center"
+        data-theme="light"
+        className="
+          relative min-h-[100dvh] w-full snap-start z-[50]
+          bg-white flex flex-col items-center
+        "
       >
-        {/* O z-[50] acima garante que ela fique por cima dos vídeos (z-10) */}
-
+        {/* Espaço da Navbar */}
         <div className="h-20 sm:h-24 md:h-28 w-full flex-shrink-0 bg-white" />
 
         <div className="max-w-[1440px] mx-auto w-full px-4 flex-1 flex items-center py-10 bg-white">
-          <ImageGallery isActive={activeSection === 2} onModalChange={setIsAnyModalOpen} />
+          <ImageGallery onModalChange={setIsAnyModalOpen} />
         </div>
       </section>
 
-      {/* SEÇÃO 3: VÍDEO EMOLDURADO - Margens e dimensões corrigidas */}
+      {/* ================= SEÇÃO 3 — VÍDEO (DARK) ================= */}
       <section
         id="localizacao"
-        className="relative h-screen min-h-[100dvh] w-full snap-start flex-shrink-0 z-10 bg-black flex flex-col items-center px-4"
+        data-theme="dark"
+        className="
+          relative h-screen min-h-[100dvh] w-full snap-start
+          flex-shrink-0 z-10 bg-black
+          flex flex-col items-center px-4
+        "
       >
         <div className="h-20 sm:h-24 md:h-28 w-full flex-shrink-0" />
+
         <div className="w-full flex-1 flex items-center justify-center pb-10">
           <div className="w-full max-w-[95vw] sm:max-w-[85vw] md:max-w-[800px] aspect-video rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
-            <video
-              autoPlay
-              muted
-              loop
-              playsInline
-              className="h-full w-full object-cover"
-            >
-              <source src="/assets/video/imersao.mp4" type="video/mp4" />
+            <video autoPlay muted loop playsInline className="h-full w-full object-cover">
+              <source src="/assets/video/dramary.mp4" type="video/mp4" />
             </video>
           </div>
         </div>
       </section>
 
-      {/* SEÇÃO 4: SILK & FOOTER */}
-      <section className="relative h-screen min-h-[100dvh] w-full snap-start flex-shrink-0 z-10 bg-white flex items-center justify-center overflow-hidden">
+      {/* ================= SEÇÃO 4 — FOOTER / SILK (LIGHT) ================= */}
+      <section
+        data-theme="light"
+        className="
+          relative h-screen min-h-[100dvh] w-full snap-start
+          flex-shrink-0 bg-white
+          flex items-center justify-center overflow-hidden
+        "
+      >
         <div className="absolute inset-0 pointer-events-none">
           <Silk speed={1.2} scale={1.2} color="#7B7481" noiseIntensity={0.3} />
         </div>
@@ -102,6 +110,7 @@ export default function RolexInspiredSite() {
             className="w-full max-w-[180px] sm:max-w-[300px] md:max-w-[450px] h-auto mb-10 md:mb-16"
           />
 
+          {/* Social */}
           <div className="flex flex-col items-center gap-8">
             <div className="flex items-center gap-8 sm:gap-12 md:gap-16">
               {/* INSTAGRAM */}
