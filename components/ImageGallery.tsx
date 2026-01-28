@@ -21,7 +21,7 @@ export default function ImageGallery({ onModalChange }: ImageGalleryProps) {
   const images: ImageItem[] = [
     {
       key: "buffet",
-      src: "/assets/image/buffet_1.jpg",
+      src: "/assets/image/buffet_7.jpg",
       title: "Buffet",
       label: "Conhecer",
     },

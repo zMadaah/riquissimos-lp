@@ -13,8 +13,8 @@ export const GALLERIES: Record<GalleryItemKey, GalleryData> = {
     description:
       "Uma curadoria exclusiva de celebrações únicas, capturadas com elegância e emoção.",
     images: [
-      "/assets/image/buffet_1.jpg",
-      "/assets/image/buffet_2.jpg",
+      "/assets/image/buffet_5.jpg",
+      "/assets/image/buffet_6.jpg",
       "/assets/image/buffet_3.jpg",
       "/assets/image/buffet_4.jpg",
     ],
