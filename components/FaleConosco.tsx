@@ -8,15 +8,15 @@ export default function FaleConosco() {
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${message}`;
 
   return (
-    <main className="min-h-screen bg-white text-black relative">
+    <main className="min-h-screen bg-black text-white relative">
       
       {/* BOTÃO VOLTAR (MOBILE & DESKTOP) */}
       <div className="fixed top-6 left-4 sm:left-6 md:left-10 z-[100]">
         <Link 
           href="/" 
-          className="group flex items-center gap-2 text-[9px] uppercase tracking-[0.3em] text-black-900  font-sans font-extrabold hover:text-black transition-colors duration-300"
+          className="group flex items-center gap-2 text-[9px] uppercase tracking-[0.3em] text-black-900  font-sans font-extrabold hover:text-white transition-colors duration-300"
         >
-          <div className="p-2 rounded-full border border-gray-100 group-hover:border-black transition-colors duration-300">
+          <div className="p-2 rounded-full border border-gray-500 group-hover:border-white transition-colors duration-300">
             <svg 
               className="w-4 h-4 transition-transform duration-300 group-hover:-translate-x-1" 
               fill="none" 
@@ -70,7 +70,7 @@ export default function FaleConosco() {
             href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="group relative bg-black text-white px-6 sm:px-8 md:px-12 py-3 sm:py-4 md:py-5 text-[9px] sm:text-[9.5px] md:text-[10px] uppercase tracking-[0.3em] sm:tracking-[0.35em] md:tracking-[0.4em] font-light hover:bg-gray-800 transition-all duration-500 flex items-center gap-3 sm:gap-4 w-full sm:w-auto justify-center sm:justify-start rounded-lg sm:rounded-none"
+            className="group relative bg-gray-600 text-white px-6 sm:px-8 md:px-12 py-3 sm:py-4 md:py-5 text-[9px] sm:text-[9.5px] md:text-[10px] uppercase tracking-[0.3em] sm:tracking-[0.35em] md:tracking-[0.4em] font-light hover:bg-gray-800 transition-all duration-500 flex items-center gap-3 sm:gap-4 w-full sm:w-auto justify-center sm:justify-start rounded-lg sm:rounded-none"
           >
             Iniciar Atendimento Online
             <svg 

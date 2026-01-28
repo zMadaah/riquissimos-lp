@@ -30,15 +30,15 @@ export default function FAQ() {
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${message}`;
 
   return (
-    <main className="min-h-screen bg-white text-black font-sans antialiased overflow-x-hidden">
+    <main className="min-h-screen bg-black text-white font-sans antialiased overflow-x-hidden">
 
       {/* BOTÃO VOLTAR: Posicionamento corrigido para mobile */}
       <div className="fixed top-4 sm:top-6 left-4 sm:left-6 md:left-10 z-[100]">
         <Link 
           href="/" 
-          className="group flex items-center gap-2 text-[8px] sm:text-[9px] uppercase tracking-[0.3em] font-bold hover:text-gray-500 transition-colors duration-300"
+          className="group flex items-center gap-2 text-[9px] uppercase tracking-[0.3em] text-black-900  font-sans font-extrabold hover:text-white transition-colors duration-300"
         >
-          <div className="p-1.5 sm:p-2 rounded-full border border-gray-100 bg-white/80 backdrop-blur-sm group-hover:border-black transition-colors duration-300 shadow-sm">
+          <div className="p-2 rounded-full border border-gray-500 group-hover:border-white transition-colors duration-300">
             <svg 
               className="w-3.5 h-3.5 sm:w-4 h-4 transition-transform duration-300 group-hover:-translate-x-1" 
               fill="none" 
@@ -48,14 +48,14 @@ export default function FAQ() {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 19l-7-7 7-7" />
             </svg>
           </div>
-          <span className="hidden xs:inline">Voltar</span>
+          <span className="hidden xs:inline ">Voltar</span>
         </Link>
       </div>
 
       {/* HEADER: Ajuste de escala responsiva */}
       <header className="pt-24 sm:pt-32 md:pt-40 pb-10 sm:pb-16 px-6 text-center">
         <h1 className="text-[9px] sm:text-[11px] tracking-[0.4em] uppercase font-bold mb-3 text-zinc-400">
-          Suporte
+          FAQ
         </h1>
         <h2 className="text-xl sm:text-3xl md:text-4xl lg:text-5xl tracking-tight font-black max-w-3xl mx-auto leading-tight">
           Perguntas Frequentes

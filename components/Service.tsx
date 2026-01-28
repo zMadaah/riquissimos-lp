@@ -10,15 +10,15 @@ export default function Service() {
     },
     {
       title: "Decoração",
-      items: ["Decoração cenográfica", "Decoração floral", "Decoração temática", "Decoração personalizada"]
+      items: ["Decoração cenográfica", "Decoração floral", "Decoração personalizada"]
     },
     {
       title: "Gastronomia",
-      items: ["Buffet completo", , "Bolos artísticos", "Doces finos"]
+      items: ["Buffet completo","Bolos artísticos", "Doces finos"]
     },
     {
       title: "Mobiliário e Estrutura",
-      items: [ "Mobiliário decorativo", "Estrutura completa", "Logística de montagem"]
+      items: [ "Mobiliário completo", "Estrutura completa", "Logística de montagem"]
     },
     {
       title: "Criação e Projeto",
@@ -26,15 +26,15 @@ export default function Service() {
     },
     {
       title: "Audiovisual",
-      items: ["Fotografia profissional", "Filmagem profissional", "Captação com drone", "Produção de conteúdo"]
+      items: ["Fotografia e Filmagem profissional",  "Captação com drone", "Produção de conteúdo"]
     },
     {
       title: "Produção e Execução",
-      items: ["Planejamento", "Produção executiva", "Coordenação geral", "Execução completa"]
+      items: ["Planejamento", "Produção executiva", "Coordenação geral"]
     },
     {
       title: "Formatos Atendidos",
-      items: ["Festas Infantis e 15 anos", "Casamentos", "Eventos Corporativos", "Lançamentos"]
+      items: ["Festas De 15 anos", "Casamentos", "Eventos Corporativos"]
     }
   ];
 
@@ -94,12 +94,7 @@ export default function Service() {
         </div>
       </section>
 
-      {/* RODAPÉ: Respiro final */}
-      {/* <footer className="py-16 border-t border-zinc-100 text-center px-6">
-        <p className="text-[8px] sm:text-[9px] tracking-[0.4em] uppercase text-zinc-700 font-bold">
-          Transformando visões em realidade memorável.
-        </p>
-      </footer> */}
+      
     </main>
   );
 }

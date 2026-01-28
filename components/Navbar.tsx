@@ -12,7 +12,7 @@ export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [mobileLocalizacaoOpen, setMobileLocalizacaoOpen] = useState(false);
 
-  const cidades = ["Brasília", "Goiânia", "Ribeirão Preto", "São Paulo"];
+  const cidades = ["Brasília - DF", "Goiânia - GO", "Ribeirão Preto - SP", "São Paulo - SP"];
 
   /* ================================
      OBSERVER DE SEÇÕES (GLOBAL)
@@ -105,7 +105,7 @@ export default function Navbar() {
                   exit={{ opacity: 0, y: 10 }}
                   className="absolute top-[80%] left-0 bg-white shadow-2xl p-6 min-w-[220px] z-20 border border-gray-100"
                 >
-                  <p className="text-[8px] uppercase tracking-[0.5em] text-zinc-400 mb-4 font-extrabold border-b pb-2">
+                  <p className="text-[8px] uppercase tracking-[0.5em]  text-black mb-4 font-extrabold border-b pb-2">
                     Onde Atuamos
                   </p>
                   <ul className="flex flex-col gap-4">
