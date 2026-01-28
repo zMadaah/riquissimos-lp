@@ -3,7 +3,7 @@ import React from 'react';
 import Link from 'next/link';
 
 export default function FaleConosco() {
-  const whatsappNumber = "5561991209112"; 
+  const whatsappNumber = "11993115436"; 
   const message = encodeURIComponent("Olá! Gostaria de solicitar um orçamento exclusivo.");
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${message}`;
 
