@@ -42,8 +42,7 @@ export default function ImageGallery({
         },
     ];
 
-    const [activeModal, setActiveModal] =
-        useState<GalleryItemKey | null>(null);
+    const [activeModal, setActiveModal] = useState<GalleryItemKey | null>(null);
 
     function openModal(key: GalleryItemKey) {
         setActiveModal(key);
@@ -57,9 +56,8 @@ export default function ImageGallery({
 
     return (
         <>
-            {/* SEÇÃO PRINCIPAL  */}
-            <section className="w-full h-full bg-white flex flex-col items-center justify-center px-3 sm:px-6 md:px-10 py-4 sm:py-6 md:py-8">
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4 md:gap-6 lg:gap-8 max-w-[1250px] w-full h-full items-start sm:items-center">
+            <section className="w-full h-full bg-white flex flex-col items-center justify-center px-3 sm:px-6 md:px-10 py-4 sm:py-6 md:py-8 font-sans">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-10 w-full max-w-[90vw] md:max-w-[1250px]">
                     {images.map((img, index) => (
                         <motion.div
                             key={img.key}
@@ -69,9 +67,10 @@ export default function ImageGallery({
                             transition={{ duration: 0.5, delay: index * 0.1, ease: "easeOut" }}
                             viewport={{ once: true, amount: 0.3 }}
                         >
+                            {/* IMAGEM */}
                             <motion.div
                                 onClick={() => openModal(img.key)}
-                                className="overflow-hidden w-full aspect-[3/4] bg-[#f9f9f9] shadow-sm relative mb-2 sm:mb-3 md:mb-4 cursor-pointer rounded-lg"
+                                className="overflow-hidden w-full aspect-[3/4] bg-[#f9f9f9] shadow-sm relative mb-4 sm:mb-5 md:mb-6 cursor-pointer rounded-[20px] sm:rounded-[30px]"
                                 style={{
                                     maxHeight: "clamp(200px, 45vh, 400px)",
                                 }}
@@ -88,29 +87,33 @@ export default function ImageGallery({
                                 />
                             </motion.div>
 
-                            <div className="text-center text-black w-full">
-                                <h3 className="text-[8px] sm:text-[9px] md:text-[10px] uppercase tracking-[0.2em] sm:tracking-[0.3em] md:tracking-[0.5em] font-bold mb-1 sm:mb-2 md:mb-3 leading-tight">
+                            {/* TÍTULO E BOTÃO (LABEL) */}
+                            <div className="text-center w-full flex flex-col items-center">
+                                <h3 className="text-[9px] sm:text-[10px] md:text-[11px] uppercase tracking-[0.4em] font-extrabold mb-4 text-black leading-tight">
                                     {img.title}
                                 </h3>
-                                <span className="px-3 sm:px-4 md:px-6 py-1 sm:py-1.5 md:py-2 border border-gray-200 rounded-full text-[7px] sm:text-[8px] md:text-[9px] uppercase tracking-[0.15em] sm:tracking-[0.2em] md:tracking-[0.3em] text-gray-400 inline-block whitespace-nowrap">
+                                
+                                <button
+                                    onClick={() => openModal(img.key)}
+                                    className="px-6 sm:px-8 py-2 sm:py-2.5 border border-black rounded-full text-[8px] sm:text-[9px] font-bold uppercase tracking-[0.3em] text-black transition-all duration-300 hover:bg-black hover:text-white"
+                                >
                                     {img.label}
-                                </span>
+                                </button>
                             </div>
                         </motion.div>
                     ))}
                 </div>
             </section>
 
-            {/* MODAL */}
+            {/* MODAL (Mantido conforme original, garantindo font-sans) */}
             <AnimatePresence>
                 {activeModal && (
                     <motion.div
-                        className="fixed inset-0 z-[500] bg-black/70 flex items-center justify-center p-2 sm:p-4"
+                        className="fixed inset-0 z-[500] bg-black/80 backdrop-blur-sm flex items-center justify-center p-2 sm:p-4 font-sans"
                         onClick={closeModal}
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        transition={{ duration: 0.2 }}
                     >
                         <motion.div
                             onClick={(e) => e.stopPropagation()}
@@ -118,17 +121,15 @@ export default function ImageGallery({
                             animate={{ y: 0, opacity: 1, scale: 1 }}
                             exit={{ y: 40, opacity: 0, scale: 0.96 }}
                             transition={{ duration: 0.35, ease: "easeOut" }}
-                            className="bg-white w-full sm:w-[95%] md:w-[92%] max-w-[1100px] max-h-[85vh] sm:max-h-[90vh] overflow-hidden relative rounded-lg"
+                            className="bg-white w-full sm:w-[95%] md:w-[92%] max-w-[1100px] max-h-[85vh] sm:max-h-[90vh] overflow-hidden relative rounded-[20px] shadow-2xl"
                         >
-                            {/* FECHAR */}
                             <button
                                 onClick={closeModal}
-                                className="absolute top-2 sm:top-3 md:top-5 right-2 sm:right-3 md:right-5 text-[8px] sm:text-[9px] md:text-[10px] tracking-[0.2em] sm:tracking-[0.3em] md:tracking-[0.4em] uppercase text-gray-400 hover:text-black z-10 transition-colors font-medium"
+                                className="absolute top-6 right-8 text-[10px] tracking-[0.4em] uppercase text-gray-400 hover:text-black z-50 transition-colors font-bold"
                             >
                                 Fechar
                             </button>
 
-                            {/* CONTEÚDO */}
                             <GalleryModal
                                 data={GALLERIES[activeModal]}
                                 onClose={closeModal}

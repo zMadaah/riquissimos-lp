@@ -1,11 +1,12 @@
 "use client";
 import React from 'react';
+import Link from 'next/link';
 
 export default function FAQ() {
   const faqs = [
     {
       question: "Como solicitar um orçamento personalizado?",
-      answer: "Pode entrar em contacto connosco através da nossa página de contacto ou diretamente por e-mail. A nossa equipa de curadoria responderá em até 24 horas úteis para agendar uma consultoria inicial."
+      answer: "Pode entrar em contacto conosco através da nossa página de contacto ou diretamente por e-mail. A nossa equipa de curadoria responderá em até 24 horas úteis para agendar uma consultoria inicial."
     },
     {
       question: "Atendem eventos fora de São Paulo?",
@@ -21,27 +22,59 @@ export default function FAQ() {
     },
     {
       question: "Os projetos 3D estão incluídos no serviço?",
-      answer: "Sim, todos os nossos projetos de cenografia e decoração incluem o desenvolvimento de maquetes digitais 3D para que possa visualizar cada detalhe antes da execução final."
+      answer: "Sim, todos os nossos projetos de cenografia e decoração incluem o desenvolvimento de projetos 3D para que possa visualizar cada detalhe antes da execução final."
     }
   ];
+  const whatsappNumber = "5561991209112"; 
+  const message = encodeURIComponent("Olá! Gostaria de falar com a equipe.");
+  const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${message}`;
 
   return (
-    <main className="min-h-screen bg-white text-black">
+    <main className="min-h-screen bg-white text-black font-sans antialiased">
+
+      {/* BOTÃO VOLTAR */}
+      <div className="fixed top-6 left-4 sm:left-6 md:left-10 z-[100]">
+        <Link 
+          href="/" 
+          className="group flex items-center gap-2 text-[9px] uppercase tracking-[0.3em] font-medium hover:text-gray-500 transition-colors duration-300"
+        >
+          <div className="p-2 rounded-full border border-gray-100 group-hover:border-black transition-colors duration-300">
+            <svg 
+              className="w-4 h-4 transition-transform duration-300 group-hover:-translate-x-1" 
+              fill="none" 
+              stroke="currentColor" 
+              viewBox="0 0 24 24"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.2} d="M15 19l-7-7 7-7" />
+            </svg>
+          </div>
+          <span className="hidden sm:inline">Voltar</span>
+        </Link>
+      </div>
+
       {/* HEADER */}
-      <section className="pt-24 sm:pt-32 md:pt-40 lg:pt-48 pb-12 sm:pb-16 md:pb-20 px-4 sm:px-6 md:px-10 text-center">
-        <h1 className="text-[10px] sm:text-[11px] md:text-[13px] tracking-[0.4em] sm:tracking-[0.5em] md:tracking-[0.6em] uppercase font-light mb-3 sm:mb-4 text-gray-400">Suporte & Informação</h1>
-        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-serif italic tracking-tight leading-tight">Perguntas Frequentes</h2>
+      <section className="pt-32 sm:pt-40 md:pt-48 pb-12 sm:pb-16 md:pb-20 px-4 sm:px-6 md:px-10 text-center">
+        <h1 className="text-[10px] sm:text-[11px] md:text-[13px] tracking-[0.5em] uppercase font-sans mb-3 sm:mb-4 text-gray-500">
+          Suporte
+        </h1>
+        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-sans tracking-tight font-extrabold">
+          Perguntas Frequentes
+        </h2>
       </section>
 
-      {/* LISTA DE FAQ */}
+      {/* LISTA DE FAQ COM BORDER RADIUS, BORDA PRETA E TEXTO PRETO */}
       <section className="px-4 sm:px-6 md:px-10 pb-16 sm:pb-24 md:pb-32 max-w-4xl mx-auto">
-        <div className="space-y-10 sm:space-y-12 md:space-y-16">
+        <div className="flex flex-col gap-4 sm:gap-6">
           {faqs.map((faq, index) => (
-            <div key={index} className="border-t border-gray-100 pt-6 sm:pt-7 md:pt-8 group">
-              <h3 className="text-[11px] sm:text-[11.5px] md:text-[12px] tracking-[0.2em] sm:tracking-[0.25em] md:tracking-[0.3em] uppercase font-bold mb-4 sm:mb-5 md:mb-6 group-hover:text-gray-500 transition-colors leading-tight">
+            <div
+              key={index}
+              className="group p-6 sm:p-8 md:p-10 rounded-[20px] sm:rounded-[30px] border border-black bg-white hover:bg-zinc-50 transition-all duration-500"
+            >
+              <h3 className="text-[11px] sm:text-[11.5px] md:text-[12px] tracking-[0.25em] uppercase font-extrabold mb-4 sm:mb-5 md:mb-6 leading-tight transition-colors font-sans text-black">
                 {faq.question}
               </h3>
-              <p className="text-[12px] sm:text-[13px] md:text-[14px] tracking-widest text-gray-500 leading-relaxed sm:leading-relaxed md:leading-relaxed font-light max-w-2xl">
+
+              <p className="text-[12px] sm:text-[13px] md:text-[14px] tracking-[0.05em] text-black leading-relaxed font-light max-w-2xl font-sans">
                 {faq.answer}
               </p>
             </div>
@@ -50,11 +83,19 @@ export default function FAQ() {
       </section>
 
       {/* CALL TO ACTION FINAL */}
-      <section className="py-12 sm:py-16 md:py-20 bg-[#F8F8F8] text-center px-4 sm:px-6 md:px-10">
-        <p className="text-[9px] sm:text-[10px] md:text-[11px] tracking-[0.3em] sm:tracking-[0.35em] md:tracking-[0.4em] uppercase mb-6 sm:mb-7 md:mb-8">Ainda tem dúvidas?</p>
-        <button className="border border-black px-6 sm:px-8 md:px-12 py-3 sm:py-3.5 md:py-4 text-[9px] sm:text-[9.5px] md:text-[10px] uppercase tracking-[0.3em] sm:tracking-[0.35em] md:tracking-[0.4em] hover:bg-black hover:text-white transition-all duration-500 font-light rounded-lg sm:rounded-none w-full sm:w-auto">
-          Falar com um consultor
-        </button>
+      <section className="py-20 bg-[#f5f3ef] text-center px-4 sm:px-6 md:px-10">
+        <p className="text-[9px] sm:text-[10px] md:text-[11px] tracking-[0.4em] uppercase mb-8 font-bold text-zinc-500">
+          Ainda tem dúvidas?
+        </p>
+
+        <a 
+            href={whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+           className="inline-block bg-black text-white px-10 py-5 rounded-full text-[9px] sm:text-[10px] uppercase tracking-[0.3em] hover:bg-zinc-800 transition-all duration-500 font-bold"
+          >
+            Fale com a nossa equipe
+          </a>
       </section>
     </main>
   );

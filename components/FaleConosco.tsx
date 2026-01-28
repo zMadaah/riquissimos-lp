@@ -1,22 +1,43 @@
 "use client";
 import React from 'react';
+import Link from 'next/link';
 
 export default function FaleConosco() {
-  // Substitua pelo seu número (DDI + DDD + Número) sem espaços ou traços
   const whatsappNumber = "5561991209112"; 
   const message = encodeURIComponent("Olá! Gostaria de solicitar um orçamento exclusivo.");
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${message}`;
 
   return (
-    <main className="min-h-screen bg-white text-black">
+    <main className="min-h-screen bg-white text-black relative">
+      
+      {/* BOTÃO VOLTAR (MOBILE & DESKTOP) */}
+      <div className="fixed top-6 left-4 sm:left-6 md:left-10 z-[100]">
+        <Link 
+          href="/" 
+          className="group flex items-center gap-2 text-[9px] uppercase tracking-[0.3em] text-black-900  font-sans font-extrabold hover:text-black transition-colors duration-300"
+        >
+          <div className="p-2 rounded-full border border-gray-100 group-hover:border-black transition-colors duration-300">
+            <svg 
+              className="w-4 h-4 transition-transform duration-300 group-hover:-translate-x-1" 
+              fill="none" 
+              stroke="currentColor" 
+              viewBox="0 0 24 24"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 19l-7-7 7-7" />
+            </svg>
+          </div>
+          <span className="hidden sm:inline">Voltar</span>
+        </Link>
+      </div>
+
       {/* HEADER */}
-      <section className="pt-24 sm:pt-32 md:pt-40 lg:pt-48 pb-8 sm:pb-12 md:pb-16 px-4 sm:px-6 md:px-10">
+      <section className="pt-32 sm:pt-40 md:pt-48 pb-8 sm:pb-12 md:pb-16 px-4 sm:px-6 md:px-10">
         <div className="max-w-7xl mx-auto border-b border-gray-100 pb-8 sm:pb-10 md:pb-12">
-          <h1 className="text-[10px] sm:text-[11px] md:text-[13px] tracking-[0.4em] sm:tracking-[0.5em] md:tracking-[0.6em] uppercase font-light mb-3 sm:mb-4 text-gray-400">
+          <h1 className="text-[10px] sm:text-[11px] md:text-[13px] tracking-[0.4em] sm:tracking-[0.5em] md:tracking-[0.6em] uppercase font-bold mb-3 sm:mb-4 text-gray-900">
             Contato
           </h1>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-serif italic tracking-tight leading-tight">
-            Solicite um orçamento exclusivo
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-sans tracking-tight ">
+            Solicite um orçamento
           </h2>
         </div>
       </section>
@@ -26,14 +47,14 @@ export default function FaleConosco() {
         <div className="space-y-8 sm:space-y-10 md:space-y-12">
           <div>
             <h3 className="text-[10px] sm:text-[10.5px] md:text-[11px] tracking-[0.2em] sm:tracking-[0.25em] md:tracking-[0.3em] uppercase font-bold mb-4 sm:mb-5 md:mb-6">Modelo de Atendimento</h3>
-            <p className="text-[11px] sm:text-[11.5px] md:text-[12px] tracking-widest text-gray-500 uppercase leading-relaxed sm:leading-loose">
+            <p className="text-[11px] sm:text-[11.5px] md:text-[12px] tracking-widest text-black-400 font-sans uppercase leading-relaxed sm:leading-loose">
               Atendimento 100% Online<br className="hidden sm:block" /> 
               Disponibilidade Nacional & Internacional
             </p>
           </div>
           <div>
             <h3 className="text-[10px] sm:text-[10.5px] md:text-[11px] tracking-[0.2em] sm:tracking-[0.25em] md:tracking-[0.3em] uppercase font-bold mb-4 sm:mb-5 md:mb-6">Canais Diretos</h3>
-            <p className="text-[11px] sm:text-[11.5px] md:text-[12px] tracking-widest text-gray-500 uppercase leading-relaxed sm:leading-loose">
+            <p className="text-[11px] sm:text-[11.5px] md:text-[12px] tracking-widest font-sans text-black-500 uppercase leading-relaxed sm:leading-loose">
               Segunda a Sexta — 09h às 18h
             </p>
           </div>
@@ -41,7 +62,7 @@ export default function FaleConosco() {
 
         {/* CHAMADA PARA AÇÃO (WHATSAPP) */}
         <div className="flex flex-col justify-center items-start space-y-6 sm:space-y-7 md:space-y-8">
-          <p className="text-xs sm:text-sm text-gray-600 font-light leading-relaxed max-w-md">
+          <p className="text-xs sm:text-sm text-black-500 font-sans leading-relaxed max-w-md">
             Para garantir a exclusividade e agilidade no seu atendimento, realizamos nossas consultorias e orçamentos via WhatsApp Business.
           </p>
           
@@ -61,10 +82,6 @@ export default function FaleConosco() {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
           </a>
-
-          {/* <span className="text-[9px] uppercase tracking-[0.2em] text-gray-400">
-            Tempo médio de resposta: 15 minutos
-          </span> */}
         </div>
       </section>
     </main>

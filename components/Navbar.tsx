@@ -1,183 +1,130 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
+import { motion, AnimatePresence } from 'framer-motion';
 
 interface NavbarProps {
-  isDarkBg?: boolean; 
+  isDarkBg?: boolean;
+  forceVisible?: boolean;
 }
 
-export default function Navbar({ isDarkBg = true }: NavbarProps) {
+export default function Navbar({ isDarkBg = true, forceVisible = false }: NavbarProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => setIsScrolled(window.scrollY > 50);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const cidades = ["Brasília", "Goiânia", "Ribeirão Preto", "São Paulo"];
 
-  // Definimos uma variável para a cor do texto baseada no fundo
-  const textColor = isDarkBg ? 'text-white' : 'text-black';
+  // Se forceVisible for true, a barra fica BRANCA com texto PRETO permanentemente
+  const isFixedWhite = forceVisible || isScrolled;
+  
+  const textColor = isFixedWhite ? 'text-black' : (isDarkBg ? 'text-white' : 'text-black');
+  const logoFilter = isFixedWhite ? 'brightness-0' : (isDarkBg ? 'brightness-0 invert' : 'brightness-0');
 
   return (
-    <nav className="flex items-center justify-between px-4 sm:px-6 md:px-10 py-4 sm:py-6 md:py-8 bg-transparent w-full transition-colors duration-500 relative">
-      
-      {/* LADO ESQUERDO: Localização e Serviços (HIDDEN em mobile) */}
-      <div className="hidden md:flex items-center justify-start gap-8 lg:gap-12 flex-1">
-        
-        {/* BLOCO LOCALIZAÇÃO */}
-        <div className="relative">
-          <button 
+    <nav className={`
+      flex items-center justify-between px-4 sm:px-6 md:px-10 
+      h-20 sm:h-24 md:h-28 w-full transition-all duration-500 relative z-[200] font-sans antialiased
+      /* Removemos o hover condicionalmente para travar o estado da imagem enviada */
+      ${isFixedWhite ? 'bg-white shadow-sm' : 'bg-transparent group hover:bg-white'}
+    `}>
+
+      {/* LADO ESQUERDO */}
+      <div className="hidden md:flex items-center justify-start gap-8 lg:gap-12 flex-1 h-full">
+        <div className="relative flex items-center h-full">
+          <button
             onClick={() => setIsModalOpen(!isModalOpen)}
-            className={`uppercase text-[8px] sm:text-[9px] md:text-[10px] tracking-[0.3em] md:tracking-[0.4em] font-medium hover:opacity-50 transition-opacity drop-shadow-sm outline-none ${textColor}`}
+            className={`uppercase text-[10px] tracking-[0.4em] font-bold transition-colors duration-500 flex items-center h-full
+              ${textColor} ${!isFixedWhite ? 'group-hover:text-black' : ''}`}
           >
             Localização
           </button>
-
-          {isModalOpen && (
-            <>
-              {/* Overlay invisível */}
-              <div 
-                className="fixed inset-0 z-10" 
-                onClick={() => setIsModalOpen(false)} 
-              />
-              
-              {/* O Modal (Fundo branco, texto cinza/preto para contraste) */}
-              <div className="absolute top-10 left-0 bg-white shadow-2xl p-4 sm:p-6 min-w-[200px] sm:min-w-[220px] z-20 border border-gray-100 transition-all duration-300">
-                <p className="text-[7px] sm:text-[8px] uppercase tracking-[0.4em] md:tracking-[0.5em] text-gray-400 mb-3 sm:mb-5 font-bold border-b border-gray-100 pb-2">
-                  Onde Atuamos
-                </p>
-                <ul className="flex flex-col gap-3 sm:gap-4">
-                  {cidades.map((cidade) => (
-                    <li key={cidade}>
-                      <button className="text-[8px] sm:text-[9px] md:text-[10px] uppercase tracking-[0.2em] md:tracking-[0.3em] text-gray-800 hover:translate-x-1 transition-transform duration-300 block">
-                        {cidade}
-                      </button>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </>
-          )}
+          
+          <AnimatePresence>
+            {isModalOpen && (
+              <>
+                <motion.div 
+                  initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+                  className="fixed inset-0 z-10" onClick={() => setIsModalOpen(false)} 
+                />
+                <motion.div 
+                  initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 10 }}
+                  className="absolute top-[80%] left-0 bg-white shadow-2xl p-6 min-w-[220px] z-20 border border-gray-100"
+                >
+                   <p className="text-[8px] uppercase tracking-[0.5em] text-black-700 mb-4 font-extrabold font-sans border-b pb-2">Onde Atuamos</p>
+                   <ul className="flex flex-col gap-4">
+                     {cidades.map(c => (
+                       <li key={c} className="text-[10px] uppercase tracking-[0.2em] font-bold text-black-400 hover:translate-x-1 transition-transform cursor-pointer">{c}</li>
+                     ))}
+                   </ul>
+                </motion.div>
+              </>
+            )}
+          </AnimatePresence>
         </div>
-        
-        <Link 
-          href="/service" 
-          className={`uppercase text-[8px] sm:text-[9px] md:text-[10px] tracking-[0.3em] md:tracking-[0.4em] font-medium hover:opacity-50 transition-opacity drop-shadow-sm ${textColor}`}
-        >
+
+        <Link href="/service" className={`uppercase text-[10px] tracking-[0.4em] font-bold transition-colors duration-500 h-full flex items-center ${textColor} ${!isFixedWhite ? 'group-hover:text-black' : ''}`}>
           Serviços
         </Link>
       </div>
 
-      {/* CENTRO: LOGOTIPO */}
-      <div className="flex justify-center items-center flex-none px-2 sm:px-4 relative flex-1 md:flex-none">
-        <Link href="/" className="absolute inset-0 flex items-center justify-center">
-          <img
-            src="/assets/image/logo.png"
-            alt="Logo"
-            className={`h-16 sm:h-20 md:h-32 w-auto object-contain transition-all duration-500 max-w-none ${
-              isDarkBg ? 'brightness-0 invert' : 'brightness-0'
-            }`}
+      {/* CENTRO: LOGOTIPO (COROA) */}
+      <div className="flex justify-center items-center flex-1 md:flex-none h-full">
+        <Link href="/">
+          <img 
+            src="/assets/image/logo.png" 
+            alt="Logo" 
+            className={`h-10 sm:h-12 md:h-14 w-auto object-contain transition-all duration-500 ${logoFilter} ${!isFixedWhite ? 'group-hover:brightness-0 group-hover:invert-0' : ''}`} 
           />
         </Link>
-        {/* Criamos um espaçador invisível para manter o vão central se necessário */}
-        <div className="h-10 w-16 sm:w-20 md:w-24"></div> 
       </div>
 
-      {/* LADO DIREITO: Contato e FAQ (HIDDEN em mobile) */}
-      <div className="hidden md:flex items-center justify-end gap-8 lg:gap-12 flex-1 relative">
-        <Link 
-          href="/contato" 
-          className={`uppercase text-[8px] sm:text-[9px] md:text-[10px] tracking-[0.3em] md:tracking-[0.4em] font-medium hover:opacity-50 transition-opacity drop-shadow-sm ${textColor}`}
-        >
+      {/* LADO DIREITO */}
+      <div className="hidden md:flex items-center justify-end gap-8 lg:gap-12 flex-1 h-full">
+        <Link href="/contato" className={`uppercase text-[10px] tracking-[0.4em] font-bold transition-colors duration-500 h-full flex items-center ${textColor} ${!isFixedWhite ? 'group-hover:text-black' : ''}`}>
           Fale Conosco
         </Link>
-
-        <Link 
-          href="/faq" 
-          className={`uppercase text-[8px] sm:text-[9px] md:text-[10px] tracking-[0.3em] md:tracking-[0.4em] font-medium hover:opacity-50 transition-opacity drop-shadow-sm ${textColor}`}
-        >
+        <Link href="/faq" className={`uppercase text-[10px] tracking-[0.4em] font-bold transition-colors duration-500 h-full flex items-center ${textColor} ${!isFixedWhite ? 'group-hover:text-black' : ''}`}>
           FAQ
         </Link>
       </div>
 
-      {/* MOBILE MENU BUTTON */}
+      {/* MOBILE MENU (Ajustado para Roboto e Fundo Branco) */}
       <button
         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-        className={`md:hidden flex flex-col gap-1.5 relative z-50 ${textColor}`}
+        className={`md:hidden flex flex-col gap-1.5 relative z-[300] transition-colors duration-500 ${textColor}`}
       >
-        <span className={`w-5 h-0.5 bg-current transition-all duration-300 ${isMobileMenuOpen ? 'rotate-45 translate-y-2' : ''}`}></span>
-        <span className={`w-5 h-0.5 bg-current transition-all duration-300 ${isMobileMenuOpen ? 'opacity-0' : ''}`}></span>
-        <span className={`w-5 h-0.5 bg-current transition-all duration-300 ${isMobileMenuOpen ? '-rotate-45 -translate-y-2' : ''}`}></span>
+        <span className={`w-6 h-0.5 bg-current transition-all duration-300 ${isMobileMenuOpen ? 'rotate-45 translate-y-2 !text-black' : ''}`}></span>
+        <span className={`w-6 h-0.5 bg-current transition-all duration-300 ${isMobileMenuOpen ? 'opacity-0' : ''}`}></span>
+        <span className={`w-6 h-0.5 bg-current transition-all duration-300 ${isMobileMenuOpen ? '-rotate-45 -translate-y-2 !text-black' : ''}`}></span>
       </button>
 
-      {/* MOBILE MENU */}
-      {isMobileMenuOpen && (
-        <>
-          {/* Overlay */}
-          <div 
-            className="fixed inset-0 z-30 md:hidden" 
-            onClick={() => setIsMobileMenuOpen(false)} 
-          />
-          
-          {/* Menu */}
-          <div className="absolute top-full left-0 right-0 bg-white shadow-2xl p-6 z-40 md:hidden border-t border-gray-100">
-            <div className="flex flex-col gap-6">
-              
-              {/* Localização */}
-              <div>
-                <button 
-                  onClick={() => setIsModalOpen(!isModalOpen)}
-                  className="uppercase text-[10px] tracking-[0.4em] font-medium text-gray-800 hover:opacity-50 transition-opacity w-full text-left"
-                >
-                  Localização
-                </button>
-                {isModalOpen && (
-                  <div className="mt-3 pl-4 border-l-2 border-gray-200">
-                    <p className="text-[8px] uppercase tracking-[0.3em] text-gray-400 mb-3 font-bold">
-                      Onde Atuamos
-                    </p>
-                    <ul className="flex flex-col gap-2">
-                      {cidades.map((cidade) => (
-                        <li key={cidade}>
-                          <button className="text-[9px] uppercase tracking-[0.2em] text-gray-600 hover:text-gray-900 transition-colors">
-                            {cidade}
-                          </button>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-              </div>
-
-              {/* Serviços */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-white z-[250] flex flex-col items-center justify-center gap-8 font-sans"
+          >
+            {["Serviços", "Fale Conosco", "FAQ"].map((item) => (
               <Link 
-                href="/service"
+                key={item} 
+                href="#" 
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="uppercase text-[10px] tracking-[0.4em] font-medium text-gray-800 hover:opacity-50 transition-opacity"
+                className="text-black text-xs uppercase tracking-[0.5em] font-bold"
               >
-                Serviços
+                {item}
               </Link>
-
-              {/* Fale Conosco */}
-              <Link 
-                href="/contato"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="uppercase text-[10px] tracking-[0.4em] font-medium text-gray-800 hover:opacity-50 transition-opacity"
-              >
-                Fale Conosco
-              </Link>
-
-              {/* FAQ */}
-              <Link 
-                href="/faq"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="uppercase text-[10px] tracking-[0.4em] font-medium text-gray-800 hover:opacity-50 transition-opacity"
-              >
-                FAQ
-              </Link>
-            </div>
-          </div>
-        </>
-      )}
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
   );
 }

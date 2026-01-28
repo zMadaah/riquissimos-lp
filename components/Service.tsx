@@ -1,5 +1,6 @@
 "use client";
 import React from 'react';
+import Link from 'next/link';
 
 export default function Service() {
   const serviceCategories = [
@@ -38,24 +39,53 @@ export default function Service() {
   ];
 
   return (
-    <main className="min-h-screen bg-white text-black">
+    /* Fundo preto e texto branco com fonte Roboto */
+    <main className="min-h-screen bg-black text-white font-sans antialiased">
+
+      {/* BOTÃO VOLTAR (Branco sobre Preto) */}
+      <div className="fixed top-6 left-4 sm:left-6 md:left-10 z-[100]">
+        <Link 
+          href="/" 
+          className="group flex items-center gap-2 text-[9px] uppercase tracking-[0.3em] font-medium hover:text-zinc-400 transition-colors duration-300"
+        >
+          <div className="p-2 rounded-full border border-zinc-800 group-hover:border-white transition-colors duration-300">
+            <svg 
+              className="w-4 h-4 transition-transform duration-300 group-hover:-translate-x-1" 
+              fill="none" 
+              stroke="currentColor" 
+              viewBox="0 0 24 24"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.2} d="M15 19l-7-7 7-7" />
+            </svg>
+          </div>
+          <span className="hidden sm:inline">Voltar</span>
+        </Link>
+      </div>
+
       {/* HEADER DA PÁGINA */}
-      <section className="pt-24 sm:pt-32 md:pt-40 lg:pt-48 pb-12 sm:pb-16 md:pb-20 px-4 sm:px-6 md:px-10 text-center">
-        <h1 className="text-[10px] sm:text-[11px] md:text-[13px] tracking-[0.4em] sm:tracking-[0.5em] md:tracking-[0.6em] uppercase font-light mb-3 sm:mb-4">Portfolio de Experiências</h1>
-        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-serif italic tracking-tight leading-tight">Serviços & Excelência</h2>
+      <section className="pt-32 sm:pt-40 md:pt-48 pb-12 sm:pb-16 md:pb-20 px-4 sm:px-6 md:px-10 text-center">
+        <h1 className="text-[10px] sm:text-[11px] md:text-[13px] tracking-[0.5em] uppercase font-sans mb-3 sm:mb-4 text-zinc-500">
+          Portfolio de Experiências
+        </h1>
+        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-sans tracking-tight leading-tight">
+          Serviços & Excelência
+        </h2>
       </section>
 
       {/* GRADE DE SERVIÇOS */}
       <section className="px-4 sm:px-6 md:px-10 pb-16 sm:pb-24 md:pb-32 max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8 lg:gap-x-12 gap-y-12 sm:gap-y-14 md:gap-y-16 lg:gap-y-20">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-8 lg:gap-x-12 gap-y-12 sm:gap-y-16">
           {serviceCategories.map((category, index) => (
-            <div key={index} className="flex flex-col border-t border-gray-200 pt-4 sm:pt-5 md:pt-6">
-              <h3 className="text-[10px] sm:text-[10.5px] md:text-[11px] tracking-[0.2em] sm:tracking-[0.25em] md:tracking-[0.3em] uppercase font-bold mb-4 sm:mb-5 md:mb-6 leading-tight">
+            <div key={index} className="flex flex-col border-t border-zinc-800 pt-6 group">
+              {/* Título da Categoria com Roboto Bold */}
+              <h3 className="text-[10px] sm:text-[11px] tracking-[0.3em] uppercase font-bold mb-6 text-white group-hover:text-zinc-400 transition-colors">
                 {category.title}
               </h3>
-              <ul className="space-y-2 sm:space-y-2.5 md:space-y-3">
+              
+              {/* Lista de Itens com Roboto Light */}
+              <ul className="space-y-3">
                 {category.items.map((item, idx) => (
-                  <li key={idx} className="text-[10px] sm:text-[11px] md:text-[12px] tracking-widest text-gray-500 uppercase leading-relaxed font-light">
+                  <li key={idx} className="text-[10px] sm:text-[11px] tracking-[0.2em] text-white uppercase leading-relaxed font-bold hover:text-zinc-300 transition-colors">
                     {item}
                   </li>
                 ))}
@@ -65,9 +95,9 @@ export default function Service() {
         </div>
       </section>
 
-      {/* RODAPÉ DA PÁGINA (OPCIONAL) */}
-      <footer className="py-12 sm:py-16 md:py-20 border-t border-gray-50 text-center px-4 sm:px-6 md:px-10">
-        <p className="text-[9px] sm:text-[9.5px] md:text-[10px] tracking-[0.3em] sm:tracking-[0.4em] md:tracking-[0.5em] uppercase text-gray-400">
+      {/* RODAPÉ */}
+      <footer className="py-20 border-t border-zinc-900 text-center px-4">
+        <p className="text-[9px] sm:text-[10px] tracking-[0.5em] uppercase text-zinc-600 font-light">
           Transformando visões em realidade memorável.
         </p>
       </footer>
