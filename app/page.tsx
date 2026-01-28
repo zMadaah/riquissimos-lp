@@ -86,7 +86,7 @@ export default function RolexInspiredSite() {
 
       {/* ================= SEÇÃO 4 — FOOTER / SILK (LIGHT) ================= */}
       <section
-        data-theme="light"
+        data-theme="dark"
         className="
           relative h-screen min-h-[100dvh] w-full snap-start
           flex-shrink-0 bg-white

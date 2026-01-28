@@ -33,7 +33,7 @@ export default function FaleConosco() {
       {/* HEADER */}
       <section className="pt-32 sm:pt-40 md:pt-48 pb-8 sm:pb-12 md:pb-16 px-4 sm:px-6 md:px-10">
         <div className="max-w-7xl mx-auto border-b border-gray-100 pb-8 sm:pb-10 md:pb-12">
-          <h1 className="text-[10px] sm:text-[11px] md:text-[13px] tracking-[0.4em] sm:tracking-[0.5em] md:tracking-[0.6em] uppercase font-bold mb-3 sm:mb-4 text-gray-900">
+          <h1 className="text-[10px] sm:text-[11px] md:text-[13px] tracking-[0.4em] sm:tracking-[0.5em] md:tracking-[0.6em] uppercase font-bold mb-3 sm:mb-4 text-whites-900">
             Contato
           </h1>
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-sans tracking-tight ">
@@ -70,7 +70,7 @@ export default function FaleConosco() {
             href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="group relative bg-gray-600 text-white px-6 sm:px-8 md:px-12 py-3 sm:py-4 md:py-5 text-[9px] sm:text-[9.5px] md:text-[10px] uppercase tracking-[0.3em] sm:tracking-[0.35em] md:tracking-[0.4em] font-light hover:bg-gray-800 transition-all duration-500 flex items-center gap-3 sm:gap-4 w-full sm:w-auto justify-center sm:justify-start rounded-lg sm:rounded-none"
+            className="group relative bg-white text-black font-sans font-extrabold px-6 sm:px-8 md:px-12 py-3 sm:py-4 md:py-5 text-[9px] sm:text-[9.5px] md:text-[10px] uppercase tracking-[0.3em] sm:tracking-[0.35em] md:tracking-[0.4em]  hover:bg-white-800 transition-all duration-500 flex items-center gap-3 sm:gap-4 w-full sm:w-auto justify-center sm:justify-start rounded-lg sm:rounded-none"
           >
             Iniciar Atendimento Online
             <svg 

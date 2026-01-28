@@ -27,7 +27,7 @@ export default function ImageGallery({ onModalChange }: ImageGalleryProps) {
     },
     {
       key: "ambiente",
-      src: "/assets/image/decoracao_1.jpg",
+      src: "/assets/image/decoracao_5.jpg",
       title: "Ambiente Riquíssimos",
       label: "Descobrir",
     },
